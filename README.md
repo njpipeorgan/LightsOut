@@ -103,7 +103,7 @@ In the frame of linear system, what we are doing is no more than doing Gaussian 
 
 ## Iteration
 
-Some patterns can be find to efficiently iterate. Since at each moment, there two rows of lights at most that can be irregular - row n and row n+1 after buttons in row n is clicked. Denote the configurations in these two rows `A` and `B` respectively. 
+Some patterns can be find to efficiently iterate. Since at each moment, there two rows of lights at most that can be irregular - row n and row n+1 after buttons in row n is clicked, we denote the configurations in these two rows as `A` and `B` respectively. 
 
 After buttons in the first row are clicked, 
 
