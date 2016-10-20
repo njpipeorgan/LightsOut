@@ -27,9 +27,11 @@ For example, for the 3 x 3 "Lights Out" problem, the system is:
 
 where `^` means exclusive or. 
 
+Solving n<sup>2</sup> variables directly using algorithms like Gaussian Elimination works, but is not efficient enough.
+
 ### Eliminating some of the variables
 
-Solving n<sup>2</sup> variables directly using algorithms like Gaussian Elimination works, but is not efficient enough. Consider a 5 x 5 problem with only the button 2 and 3 in the first row clicked: 
+Consider a 5 x 5 problem with only the button 2 and 3 in the first row clicked: 
 
     # # # # #        - # # - #
     # # # # #        # - - # #
@@ -37,7 +39,7 @@ Solving n<sup>2</sup> variables directly using algorithms like Gaussian Eliminat
     # # # # #        # # # # #
     # # # # #        # # # # #
 
-we find that we must click and only click button 2, 3 and 5 in the second row, otherwise, the corresponding lights will never be turned off. Similarly, after clicking the buttons in the second row, some buttons on the third row must be clicked, and etc. And finally, we are not able to turn off all of the lights in the last row, which in turn proves that we are wrong in choosing which buttons to click in the first row.
+, we find that we must click button 2, 3 and 5 in the second row, otherwise, the corresponding lights in the first row will never be turned off. Similarly, after clicking the buttons in the second row, some buttons on the third row must be clicked, and etc. And finally, we are not able to turn off all of the lights in the last row, which in turn indicates that we are wrong in choosing which buttons to click in the first row.
 
     - # # - #        - - - - -               - - - - -
     # - - # #        - - - # -               - - - - -
@@ -45,7 +47,13 @@ we find that we must click and only click button 2, 3 and 5 in the second row, o
     # # # # #        # # # # #               - - - - -
     # # # # #        # # # # #               # - # # -
 
-To be continued...
+Through this process, each combination of buttons clicked in the first row corresponds to the configuration of lights remaining on in the last row. The following example shows what would if button 1 and 2 are clicked in the first row: 
+
+    # # - # #        - - - - -        - - - - -        - - - - -        - - - - -
+    - - # # #        - - # # #        - - - - -        - - - - -        - - - - -
+    # # # # #   ->   - - # - -   ->   - # # # -   ->   - - - - -   ->   - - - - -
+    # # # # #        # # # # #        # # - - -        - # # - #        - - - - -
+    # # # # #        # # # # #        # # # # #        # - - - #        - - - - -
 
 
 
