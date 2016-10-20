@@ -101,7 +101,7 @@ If the all the lights in the last row are also turned off, `{a1, a2, ..., a5}` s
 
 In the frame of linear system, what we are doing is no more than doing Gaussian Elimination, but the key point is that the system is so sparse that such elimination can be done in O(n<sup>3</sup>), and the new system with n variables can be solved in O(n<sup>3</sup>). 
 
-## Iteration
+### Iteration
 
 Some patterns can be find to efficiently iterate. Since at each moment, there two rows of lights at most that can be irregular - row n and row n+1 after buttons in row n is clicked, we denote the configurations in these two rows as `A` and `B` respectively. 
 
