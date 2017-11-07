@@ -37,9 +37,9 @@ Consider a 5 x 5 problem with only the button 2 and 3 in the first row clicked:
     # # # # #        # - - # #
     # # # # #   ->   # # # # #
     # # # # #        # # # # #
-    # # # # #        # # # # #
+    # # # # #        # # # # # ,
 
-, we find that we must click button 2, 3 and 5 in the second row, otherwise, the corresponding lights in the first row will never be turned off. Similarly, after clicking the buttons in the second row, some buttons on the third row must be clicked, and etc. And finally, we are not able to turn off all of the lights in the last row, which in turn indicates that we are wrong in choosing which buttons to click in the first row.
+where we find that we must click button 2, 3 and 5 in the second row, otherwise, the corresponding lights in the first row will never be turned off. Similarly, after clicking the buttons in the second row, some buttons on the third row must be clicked, and etc. And finally, we are not able to turn off all of the lights in the last row, which in turn indicates that we are wrong in choosing which buttons to click in the first row.
 
     - # # - #        - - - - -               - - - - -
     # - - # #        - - - # -               - - - - -
@@ -57,39 +57,39 @@ Through this process, each combination of buttons clicked in the first row corre
     
 To generalize the process, suppose `{a1, a2, ..., a5}` represents whether the button in the first row is clicked, after clicking the buttons in the first row, the states of the lights in the first two rows are
 
-    (1, 1) : a1 ^ a2 ^ 1           ( 1 1 0 0 0 | 1 )
-    (1, 2) : a1 ^ a2 ^ a3 ^ 1      ( 1 1 1 0 0 | 1 )
-    (1, 3) : a2 ^ a3 ^ a4 ^ 1      ( 0 1 1 1 0 | 1 )
-    (1, 4) : a3 ^ a4 ^ a5 ^ 1      ( 0 0 1 1 1 | 1 )
-    (1, 5) : a4 ^ a5 ^ 1           ( 0 0 0 1 1 | 1 )
+    11(1) : a1 ^ a2 ^ 1           ( 1 1 0 0 0 | 1 )
+    12(1) : a1 ^ a2 ^ a3 ^ 1      ( 1 1 1 0 0 | 1 )
+    13(1) : a2 ^ a3 ^ a4 ^ 1      ( 0 1 1 1 0 | 1 )
+    14(1) : a3 ^ a4 ^ a5 ^ 1      ( 0 0 1 1 1 | 1 )
+    15(1) : a4 ^ a5 ^ 1           ( 0 0 0 1 1 | 1 )
     
-    (2, 1) : a1 ^ 1                ( 1 0 0 0 0 | 1 )
-    (2, 2) : a2 ^ 1                ( 0 1 0 0 0 | 1 )
-    (2, 3) : a3 ^ 1                ( 0 0 1 0 0 | 1 )
-    (2, 4) : a4 ^ 1                ( 0 0 0 1 0 | 1 )
-    (2, 5) : a5 ^ 1                ( 0 0 0 0 1 | 1 )
+    21(1) : a1 ^ 1                ( 1 0 0 0 0 | 1 )
+    22(1) : a2 ^ 1                ( 0 1 0 0 0 | 1 )
+    23(1) : a3 ^ 1                ( 0 0 1 0 0 | 1 )
+    24(1) : a4 ^ 1                ( 0 0 0 1 0 | 1 )
+    25(1) : a5 ^ 1                ( 0 0 0 0 1 | 1 ),
     
-Note that after some buttons in the second row is clicked in order to turn off the lights in the first row, configuration of lights on the second and the third row are also changed: 
+where `xy(n)` means the state of the light on position `(x, y)` after the buttons on the `n`-th row are clicked. Note that after some buttons in the second row is clicked in order to turn off the lights in the first row, configuration of lights on the second and the third row are also changed: 
 
-    (2, 1) : a1 ^ a3 ^ 1           ( 1 0 1 0 0 | 1 )
-    (2, 2) : a4                    ( 0 0 0 1 0 | 0 )
-    (2, 3) : a1 ^ a5               ( 1 0 0 0 1 | 0 )
-    (2, 4) : a2                    ( 0 1 0 0 0 | 0 )
-    (2, 5) : a3 ^ a5 ^ 1           ( 0 0 1 0 1 | 1 )
+    21(2) : a1 ^ a3 ^ 1           ( 1 0 1 0 0 | 1 )        =         11(1) ^ 12(1) ^ 21(1)
+    22(2) : a4                    ( 0 0 0 1 0 | 0 )        = 11(1) ^ 12(1) ^ 13(1) ^ 22(1)
+    23(2) : a1 ^ a5               ( 1 0 0 0 1 | 0 )        = 12(1) ^ 13(1) ^ 14(1) ^ 23(1)
+    24(2) : a2                    ( 0 1 0 0 0 | 0 )        = 13(1) ^ 14(1) ^ 15(1) ^ 24(1)
+    25(2) : a3 ^ a5 ^ 1           ( 0 0 1 0 1 | 1 )        = 14(1) ^ 15(1)         ^ 25(1)
     
-    (3, 1) : a1 ^ a2               ( 1 1 0 0 0 | 0 )
-    (3, 2) : a1 ^ a2 ^ a3          ( 1 1 1 0 0 | 0 )
-    (3, 3) : a2 ^ a3 ^ a4          ( 0 1 1 1 0 | 0 )
-    (3, 4) : a3 ^ a4 ^ a5          ( 0 0 1 1 1 | 0 )
-    (3, 5) : a4 ^ a5               ( 0 0 0 1 1 | 0 )
+    31(2) : a1 ^ a2               ( 1 1 0 0 0 | 0 )        =         21(1) ^ 22(1) ^ 31(1)
+    32(2) : a1 ^ a2 ^ a3          ( 1 1 1 0 0 | 0 )        = 21(1) ^ 22(1) ^ 23(1) ^ 32(1)
+    33(2) : a2 ^ a3 ^ a4          ( 0 1 1 1 0 | 0 )        = 22(1) ^ 23(1) ^ 24(1) ^ 33(1)
+    34(2) : a3 ^ a4 ^ a5          ( 0 0 1 1 1 | 0 )        = 23(1) ^ 24(1) ^ 25(1) ^ 34(1)
+    35(2) : a4 ^ a5               ( 0 0 0 1 1 | 0 )        = 24(1) ^ 25(1)         ^ 35(1)
     
-To do this iteratively, after buttons in the last row is clicked, the configuration of the lights in the last row will be:
+To do this iteratively, after buttons in the last row are clicked, the configuration of the lights in the last row will be:
 
-    (5, 1) : a2 ^ a3 ^ a5 ^ 1      ( 0 1 1 0 1 | 1 )
-    (5, 2) : a1 ^ a2 ^ a3          ( 1 1 1 0 0 | 0 )
-    (5, 3) : a1 ^ a2 ^ a4 ^ a5     ( 1 1 0 1 1 | 0 )
-    (5, 4) : a3 ^ a4 ^ a5          ( 0 0 1 1 1 | 0 )
-    (5, 5) : a1 ^ a3 ^ a4 ^ 1      ( 1 0 1 1 0 | 1 )
+    51(5) : a2 ^ a3 ^ a5 ^ 1      ( 0 1 1 0 1 | 1 )
+    52(5) : a1 ^ a2 ^ a3          ( 1 1 1 0 0 | 0 )
+    53(5) : a1 ^ a2 ^ a4 ^ a5     ( 1 1 0 1 1 | 0 )
+    54(5) : a3 ^ a4 ^ a5          ( 0 0 1 1 1 | 0 )
+    55(5) : a1 ^ a3 ^ a4 ^ 1      ( 1 0 1 1 0 | 1 )
     
 If the all the lights in the last row are also turned off, `{a1, a2, ..., a5}` should be the solution of the system: 
     
