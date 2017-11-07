@@ -69,7 +69,7 @@ To generalize the process, suppose `{a1, a2, ..., a5}` represents whether the bu
     24(1) : a4 ^ 1                ( 0 0 0 1 0 | 1 )
     25(1) : a5 ^ 1                ( 0 0 0 0 1 | 1 ),
     
-where `xy(n)` means the state of the light on position `(x, y)` after the buttons on the `n`-th row are clicked. Note that after some buttons in the second row is clicked in order to turn off the lights in the first row, configuration of lights on the second and the third row are also changed: 
+where `xy(n)` means the state of the light on position `(x, y)` after the buttons on the `n`th row are clicked. Note that after some buttons in the second row are clicked in order to turn off the lights in the first row, the configurations of lights on the second and the third row are also changed: 
 
     21(2) : a1 ^ a3 ^ 1           ( 1 0 1 0 0 | 1 )        =         11(1) ^ 12(1) ^ 21(1)
     22(2) : a4                    ( 0 0 0 1 0 | 0 )        = 11(1) ^ 12(1) ^ 13(1) ^ 22(1)
